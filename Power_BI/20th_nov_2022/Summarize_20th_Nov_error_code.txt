@@ -1,0 +1,8 @@
+Table_evaluation = DEFINE
+ VAR MinimumAmount = 5000
+ VAR MaximumAmount = 50000 
+EVALUATE
+FILTER (
+    ADDCOLUMNS(SUMMARIZE(data,data[State],data[Category],"Sales Value",SUM(data[Sales]))),
+    AND([CategoryAmount] >= MinimumAmount,[CategoryAmount] <= MaximumAmount))
+    Order BY [CategoryAmount]

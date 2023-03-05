@@ -1,0 +1,13 @@
+Source =Sql.Database(Server_Name,DB_Name)
+
+Navigation =Source{[Schema = "schema_name",Item = "table_name"]}[Data]
+
+Select Column = Table.SelectColumns(table/view_name,{"Col1","Col2","Col3"...}]
+
+= Table.AddColumn(#"Removed Other Columns","objects deployed",each [Region]&""&[TrObjectName])
+
+= Table.DuplicateColumn(#"Divided Column2","DQMetric","DQMetric - Copy")
+
+= Table.RenameColumns(#"Duplicated Column1",{{"DQMetric - Copy","DQ Metric",("ReasonDescription - copy","Issue Type"))
+
+= Table.AddColumn(#"Filtered Rows2","Custom.1",each if Text.Contains([Source Layer,"BDL-L1") then "L1" else if Text.Contains([Source Layer],"BDL-L2") then"L2" else 
